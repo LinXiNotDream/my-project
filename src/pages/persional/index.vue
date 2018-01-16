@@ -1,6 +1,6 @@
 <template>
   <div>
-    <iframe src="../../../static/canvas/canvas.html" class="my-canvas" frameborder="0"></iframe>
+    <iframe src="./static/canvas/canvas.html" class="my-canvas" frameborder="0"></iframe>
     <el-button class="enter">开启旅程</el-button>
   </div>
 </template>
