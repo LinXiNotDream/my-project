@@ -20,11 +20,17 @@
 
 <style scoped>
 .my-canvas {
-  height: calc(100vh - 4px);
   width: 100%;
+  height: calc(100vh);
+  display: block;
 }
-
 .enter {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  background: transparent;
+  border: 0;
 }
 </style>
