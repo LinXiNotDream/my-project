@@ -2,7 +2,7 @@ const Home = () => import('@/pages/subhome/home/index.vue')
 
 var HomePage = [
   {
-    path: 'home',
+    path: '/home',
     name: 'home',
     component: Home
   }

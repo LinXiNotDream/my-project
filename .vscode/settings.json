@@ -1,0 +1,33 @@
+// 将设置放入此文件中以覆盖默认设置
+{
+  // git
+  "git.enableSmartCommit": true,
+  "terminal.integrated.shell.windows": "E:\\git\\Git\\bin\\bash.exe",
+  // 样式
+  "workbench.colorTheme": "One Monokai",
+  "editor.tabSize": 2,
+  "editor.fontSize": 16,
+  "editor.lineHeight": 30,
+  "editor.wordWrap": "off",
+  "workbench.iconTheme": "vscode-icons",
+  // vetur vue插件设置
+  "vetur.validation.script": false,
+  // eslint 设置
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  // typescript 设置
+  "typescript.useCodeSnippetsOnMethodSuggest": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "vetur.format.defaultFormatter.js": "none",
+  "vetur.format.defaultFormatter.html": "js-beautify-html"
+}

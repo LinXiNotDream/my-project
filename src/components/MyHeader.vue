@@ -32,5 +32,7 @@ export default {
 </script>
 
 <style scoped>
-
+.title {
+  display: inline-block;
+}
 </style>

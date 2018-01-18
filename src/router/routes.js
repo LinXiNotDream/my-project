@@ -9,10 +9,6 @@ var routes = [
     name: 'canvas',
     component: canvas
   }, {
-    path: '/canvas',
-    name: 'canvas',
-    component: canvas
-  }, {
     path: '/elec',
     name: 'elec',
     component: elec
