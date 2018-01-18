@@ -1,7 +1,7 @@
 <template>
   <div>
     <iframe src="./static/canvas/canvas.html" class="my-canvas" frameborder="0"></iframe>
-    <el-button class="enter">开启旅程</el-button>
+    <button class="enter" @click="enter">开启旅程</button>
   </div>
 </template>
 
@@ -9,11 +9,14 @@
  export default {
    data () {
      return {
-
+     }
+   },
+   methods: {
+     enter () {
+       this.$router.push('/home')
      }
    },
    components: {
-
    }
  }
 </script>
@@ -32,5 +35,6 @@
   font-size: 22px;
   background: transparent;
   border: 0;
+  color: aqua;
 }
 </style>
