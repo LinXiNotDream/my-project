@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="box">
-      <div class="title" v-for="item in navBar" :class="{active: item.isActive}" :key="item.name" @click="pageChange(item.path, item.path)">
+      <div class="title" v-for="item in navBar" :class="{active: item.isActive}" :key="item.name" @click="pageChange(item.name, item.path)">
         <span>{{item.name}}</span>
       </div>
     </div>
@@ -15,15 +15,15 @@ export default {
       navBar: [
         {
           name: '首页',
-          path: '/persional/index',
-          isActive: false
+          path: '/home',
+          isActive: true
         }, {
           name: '干货分享',
-          path: '/persional/blog',
+          path: '/home/blog',
           isActive: false
         }, {
           name: '个人中心',
-          path: '/persional/center',
+          path: '/home/center',
           isActive: false
         }
       ]
