@@ -6,12 +6,12 @@ import router from './router'
 
 // element-ui
 import ElementUI from 'element-ui'
-import './main.css'
 import 'element-ui/lib/theme-chalk/index.css'
 
 // iview
 // import iView from 'iview'
 // import 'iview/dist/styles/iview.css'
+import './main.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
