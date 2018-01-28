@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <!-- <Carousel :imgs="imgs"></Carousel> -->
+    <Carousel :imgs="imgs"></Carousel>
   </div>
 </template>
 
