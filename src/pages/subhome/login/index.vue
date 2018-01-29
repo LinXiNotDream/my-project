@@ -5,11 +5,14 @@
       <div class="login-box">
         <div class="username">
           <span>用户名</span>
-          <el-input prefix-icon="el-icon-search"></el-input>
+          <el-input></el-input>
         </div>
         <div class="password">
           <span>密码</span>
-          <el-input prefix-icon="el-icon-search"></el-input>
+          <el-input></el-input>
+        </div>
+        <div class="login-btn">
+          <button>登录</button>
         </div>
       </div>
     </div>
@@ -37,13 +40,13 @@ export default {
 }
 .login-box {
   width: 320px;
-  height: 300px;
+  height: 155px;
   position: absolute;
-  top: 35%;
-  right: 24%;
-  padding: 20px;
-  border: 1px solid;
+  top: 30%;
+  right: 21%;
+  padding: 50px 20px;
   box-shadow: 1px 3px 45px 3px #489;
+  border-radius: 10px;
 }
 .login-box div {
   margin-bottom: 10px;
@@ -51,9 +54,33 @@ export default {
 .login-box div span {
   display: inline-block;
   width: 55px;
+  padding-right: 8px;
   text-align-last: justify;
 }
 .el-input {
   width: 250px;
 }
+.login-btn {
+  text-align: center;
+}
+.login-btn button {
+  width: 150px;
+  height: 35px;
+  line-height: 35px;
+  border: 0;
+  background: #409eff;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+}
+.login-btn button:hover {
+  background: #66b1ff;
+}
 </style>
+<style>
+.login-box .el-input__inner {
+  background: transparent;
+}
+</style>
+
