@@ -12,7 +12,7 @@
           <el-input></el-input>
         </div>
         <div class="login-btn">
-          <button>登录</button>
+          <button @click="enter">登录</button>
         </div>
       </div>
     </div>
@@ -28,6 +28,11 @@ export default {
   },
   components: {
     MyHeader
+  },
+  methods: {
+    enter () {
+      this.$router.push('/home/index')
+    }
   }
 }
 </script>
