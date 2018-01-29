@@ -43,6 +43,7 @@ export default {
   right: 24%;
   padding: 20px;
   border: 1px solid;
+  box-shadow: 7px 8px 45px 4px #4AD;
 }
 .login-box div {
   margin-bottom: 10px;
