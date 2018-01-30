@@ -1,19 +1,20 @@
 <template>
   <div class="header">
     <div class="header-box">
-      <div class="title" v-for="item in navBar" :class="{active: item.isActive}" :key="item.name" @click="pageChange(item.name, item.path)">
+      <div v-if="ISLOGIN" class="title" v-for="item in navBar" :class="{active: item.isActive}" :key="item.name" @click="pageChange(item.name, item.path)">
         <span>{{item.name}}</span>
       </div>
       <div class="operate-area">
-        <span>欢迎aaaa</span>
-        <el-button type="primary" size="mini" round>登录</el-button>
-        <el-button type="warning" size="mini" round>退出</el-button>
+        <span v-if="ISLOGIN">欢迎aaaa</span>
+        <el-button v-if="!ISLOGIN" type="primary" size="mini" round @click="login">登录</el-button>
+        <el-button v-if="ISLOGIN" type="warning" size="mini" round @click="logout">退出</el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -35,13 +36,23 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['do_login', 'do_logout']),
     pageChange (pageName, pagePath) {
       let navBar = this.navBar
       navBar.forEach(nav => {
         nav.isActive = nav.name === pageName
       })
       this.$router.push(pagePath)
+    },
+    login () {
+      this.do_login()
+    },
+    logout () {
+      this.do_logout()
     }
+  },
+  computed: {
+    ...mapGetters(['ISLOGIN'])
   }
 }
 </script>
