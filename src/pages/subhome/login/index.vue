@@ -40,7 +40,7 @@ export default {
 <style scoped>
 .box {
   background: url(../../../assets/bgimg/0416.jpg) no-repeat;
-  background-position: 100% 34%;
+  background-position: 100% 49%;
   background-size: 1400px;
 }
 .login-box {
@@ -48,7 +48,7 @@ export default {
   height: 155px;
   position: absolute;
   top: 30%;
-  right: 21%;
+  right: 25%;
   padding: 50px 20px;
   box-shadow: 1px 3px 45px 3px #489;
   border-radius: 10px;

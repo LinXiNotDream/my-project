@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 .box {
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 60px);
   width: 1200px;
-  margin: 5px auto;
+  margin: 0 auto;
 }
