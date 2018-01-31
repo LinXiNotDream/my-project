@@ -63,6 +63,7 @@ export default {
   background: #24292e;
   box-shadow: 0 0 13px #000;
   position: relative;
+  z-index: 1;
 }
 .header-box {
   width: 1200px;
