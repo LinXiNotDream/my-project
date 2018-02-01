@@ -1,13 +1,13 @@
 <template>
   <div class="header">
     <div class="header-box">
-      <div v-if="ISLOGIN" class="title" v-for="item in navBar" :class="{active: item.isActive}" :key="item.name" @click="pageChange(item.name, item.path)">
+      <div v-for="item in navBar" v-if="ISLOGIN || !ISLOGIN && item.name === '首页'" class="title" :class="{active: item.path === active}" :key="item.name" @click="pageChange(item.path)">
         <span>{{item.name}}</span>
       </div>
       <div class="operate-area">
         <span v-if="ISLOGIN">欢迎aaaa</span>
-        <el-button v-if="!ISLOGIN" type="primary" size="mini" round @click="login">登录</el-button>
-        <el-button v-if="ISLOGIN" type="warning" size="mini" round @click="logout">退出</el-button>
+        <button v-if="!ISLOGIN" class="btn primary-btn" @click="login">登录</button>
+        <button v-if="ISLOGIN" class="btn warning-btn" @click="logout">退出</button>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@ export default {
       navBar: [
         {
           name: '首页',
-          path: '/home',
+          path: '/home/index',
           isActive: true
         }, {
           name: '干货分享',
@@ -32,27 +32,35 @@ export default {
           path: '/home/center',
           isActive: false
         }
-      ]
+      ],
+      active: '/home/index'
     }
   },
   methods: {
-    ...mapActions(['do_login', 'do_logout']),
-    pageChange (pageName, pagePath) {
-      let navBar = this.navBar
-      navBar.forEach(nav => {
-        nav.isActive = nav.name === pageName
-      })
-      this.$router.push(pagePath)
+    ...mapActions(['do_logout']),
+    pageChange (pagePath) {
+      this.active = pagePath
     },
     login () {
-      this.do_login()
+      this.$router.push('/login')
     },
     logout () {
-      this.do_logout()
+      this.do_logout().then(() => this.$router.push('/'))
     }
   },
   computed: {
     ...mapGetters(['ISLOGIN'])
+  },
+  watch: {
+    'active' (val) {
+      this.$router.push(val)
+    },
+    '$route' (to, from) {
+      this.active = to.path
+    }
+  },
+  created () {
+    this.active = this.$route.path
   }
 }
 </script>
