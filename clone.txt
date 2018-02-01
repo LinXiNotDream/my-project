@@ -1,0 +1,291 @@
+******C:\Users\lWX458267\Desktop\make-file\src******------C:\Users\lWX458267\Desktop\make-file\src\.babelrc------{
+  "presets": [
+    "es2015",
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ],
+  "sourceMaps": true
+}------C:\Users\lWX458267\Desktop\make-file\src\.eslintignore------static/*.html------C:\Users\lWX458267\Desktop\make-file\src\.eslintrc.js------// http://eslint.org/docs/user-guide/configuring
+
+module.exports = {
+  env: {
+    node: true,
+  },
+  // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
+  extends: 'standard',
+  // required to lint *.vue files
+  "globals": {
+    "$": true
+  },
+
+  // add your custom rules here
+  'rules': {
+    'no-return-assign': 0,
+    'no-throw-literal': 0,
+    // allow paren-less arrow functions
+    'arrow-parens': 0,
+    // allow async-await
+    'generator-star-spacing': 0,
+    // allow debugger during development
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'camelcase': 0
+  }
+}
+******C:\Users\lWX458267\Desktop\make-file\src\app************C:\Users\lWX458267\Desktop\make-file\src\app************C:\Users\lWX458267\Desktop\make-file\src\app\config************C:\Users\lWX458267\Desktop\make-file\src\app\config******------C:\Users\lWX458267\Desktop\make-file\src\app\config\router.js------import Router from 'koa-router'
+const Student = require('../controller/students')
+
+let router = new Router({
+  prefix: '/api'
+})
+
+router
+  .get('/test/user/users', Student.users)
+  .get('/test/user/user', Student.user)
+  .post('/test/user/add', Student.addUser)
+  .del('/test/user/delete', Student.deleteUser)
+
+export default router
+******C:\Users\lWX458267\Desktop\make-file\src\app\controller************C:\Users\lWX458267\Desktop\make-file\src\app\controller******------C:\Users\lWX458267\Desktop\make-file\src\app\controller\students.js------import userHelper from '../methods/students'
+import MyStudent from '../model/students'
+
+/* 多用户 */
+exports.users = async (ctx, next) => {
+  let data
+  if (ctx.request.body) {
+    data = await userHelper.findFilterUsers(ctx.request.body)
+  } else {
+    data = await userHelper.findAllUsers()
+  }
+  ctx.body = {
+    success: true,
+    data
+  }
+}
+/* 单用户 */
+exports.user = async (ctx, next) => {
+  let data = await userHelper.findUser(ctx.request.body)
+  ctx.body = {
+    success: true,
+    data
+  }
+}
+/* 添加(更新)用户 */
+exports.addUser = async (ctx, next) => {
+  let newObj = ctx.request.body
+  let user2
+  let user = new MyStudent({
+    id: newObj.id,
+    name: newObj.name,
+    age: newObj.age
+  })
+  if (newObj.id) {
+    user2 = await userHelper.updateUser(user)
+  } else {
+    user2 = await userHelper.addUser(user)
+  }
+  if (user2) {
+    ctx.body = {
+      success: true,
+      data: user2
+    }
+  }
+}
+/* 删除用户 */
+exports.deleteUser = async (ctx, next) => {
+  let id = ctx.request.body.id
+  let data = await userHelper.deleteUser({ id })
+  ctx.body = {
+    success: true,
+    data
+  }
+}
+******C:\Users\lWX458267\Desktop\make-file\src\app\methods************C:\Users\lWX458267\Desktop\make-file\src\app\methods******------C:\Users\lWX458267\Desktop\make-file\src\app\methods\students.js------import MyStudent from '../model/students'
+
+/* 查找用户 */
+exports.findAllUsers = async () => {
+  let query = MyStudent.find()
+  let res = []
+  await query.exec(function (err, users) {
+    if (err) {
+      res = []
+    } else {
+      res = users
+    }
+  })
+  return res
+}
+/* 查找特定用户 */
+exports.findFilterUsers = async (params) => {
+  let nameReg = new RegExp(params.name, 'i')
+  let query = MyStudent.find({
+    name: {
+      $regex: nameReg
+    }
+  })
+  let res = []
+  await query.exec(function (err, users) {
+    if (err) {
+      res = []
+    } else {
+      res = users
+    }
+  })
+  return res
+}
+/* 查找单个用户 */
+exports.findUser = async (params) => {
+  let query = MyStudent.find({
+    id: params.id
+  })
+  let res = {}
+  await query.exec(function (err, tUser) {
+    if (err) {
+      res = '没有该用户'
+    } else {
+      res = tUser[0]
+    }
+  })
+  return res
+}
+/* 新增用户 */
+exports.addUser = async (user) => {
+  user = await user.save()
+  return user
+}
+/* 编辑用户 */
+exports.updateUser = async (user) => {
+  user = await MyStudent.update({ id: user.id }, {
+    $set: {
+      name: user.name,
+      age: user.age
+    }
+  })
+  return user
+}
+/* 删除用户 */
+exports.deleteUser = async ({ id }) => {
+  let flag = false
+  console.log('flag==========>' + flag)
+  await MyStudent.remove({ id }, function (err) {
+    if (err) {
+      flag = false
+    } else {
+      flag = true
+    }
+  })
+  console.log('flag=====await=====>' + flag)
+  return flag
+}
+******C:\Users\lWX458267\Desktop\make-file\src\app\model************C:\Users\lWX458267\Desktop\make-file\src\app\model******------C:\Users\lWX458267\Desktop\make-file\src\app\model\students.js------import mongoose from 'mongoose'
+
+let Schema = mongoose.Schema
+const Student_Schema = new Schema({
+  _id: Number,
+  name: String,
+  age: Number
+}, {
+  versionKey: false
+})
+
+var MyStudent = mongoose.model('students', Student_Schema)
+
+export default MyStudent
+------C:\Users\lWX458267\Desktop\make-file\src\app.js------import Koa from 'koa'
+import KoaStatic from 'koa-static'
+import path from 'path'
+import cors from 'koa2-cors'
+import Router from './app/config/router'
+import './db'
+
+const app = new Koa()
+
+app
+  .use(cors())
+  .use(KoaStatic(path.join(__dirname, '/static')))
+  .use(Router.routes())
+  .use(Router.allowedMethods())
+  .listen(3000)
+
+console.log('server started at port 3000...')
+******C:\Users\lWX458267\Desktop\make-file\src\db************C:\Users\lWX458267\Desktop\make-file\src\db******------C:\Users\lWX458267\Desktop\make-file\src\db\index.js------import Mongoose from 'mongoose'
+
+Mongoose.Promise = global.Promise
+const dburl = 'mongodb://localhost:27017/gomall'
+// connet database
+var db = Mongoose.connect(dburl, {
+  useMongoClient: true
+})
+
+db.on('error', function (error) {
+  console.log('数据库连接失败：' + error)
+})
+
+db.on('open', function () {
+  console.log('数据库连接成功')
+})
+
+export default db
+------C:\Users\lWX458267\Desktop\make-file\src\index.js------require('babel-register')
+// 应用的其余 require 需要被放到 hook 后面
+require('./app')
+------C:\Users\lWX458267\Desktop\make-file\src\package.json------{
+  "name": "test-koa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-router": "^7.3.0",
+    "koa-static": "^4.0.2",
+    "koa2-cors": "^2.0.5",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.5"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "nodemon": "^1.12.1",
+    "standard": "^10.0.3"
+  }
+}
+******C:\Users\lWX458267\Desktop\make-file\src\static************C:\Users\lWX458267\Desktop\make-file\src\static******------C:\Users\lWX458267\Desktop\make-file\src\static\index.html------<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+  <script src="./index.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="">aaaaaaa</a>
+</body>
+
+</html>------C:\Users\lWX458267\Desktop\make-file\src\static\index.js------$(document).ready(function () {
+  getUser()
+})
+function getUser () {
+  $.ajax({
+    url: 'http://10.177.251.84:3000/api/test/user/users',
+    type: 'get',
+    success: function (data, status) {
+      console.log(data)
+    },
+    fail: function (err, status) {
+      console.log(err)
+    }
+  })
+}
