@@ -1,8 +1,41 @@
 body {
   margin: 0;
 }
+
 .box {
   min-height: calc(100vh - 60px);
   width: 1200px;
   margin: 0 auto;
+}
+
+.btn {
+  height: 30px;
+  width: 70px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background: #ecf5ff;
+  border: 1px solid #b3d8ff;
+  color: #409eff;
+}
+
+.primary-btn:hover {
+  background: #66b1ff;
+  border: 1px solid #66b1ff;
+  color: #ecf5ff;
+}
+
+.warning-btn {
+  background: #fdf6ec;
+  border: 1px solid #f5dab1;
+  color: #e6a23c;
+}
+
+.warning-btn:hover {
+  background: #e6a23c;
+  border: 1px solid #e6a23c;
+  color: #fdf6ec;
 }
