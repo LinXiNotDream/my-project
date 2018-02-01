@@ -25,3 +25,11 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+// 不重定向白名单
+const whiteList = ['/login', '/home/index', '/']
+router.beforeEach((to, from, next) => {
+  if (store.getters.ISLOGIN) next()
+  else if (whiteList.includes(to.path)) next()
+  else next('/login')
+})
