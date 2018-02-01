@@ -5,11 +5,11 @@
       <div class="login-box">
         <div class="username">
           <span>用户名</span>
-          <el-input></el-input>
+          <input>
         </div>
         <div class="password">
           <span>密码</span>
-          <el-input></el-input>
+          <input>
         </div>
         <div class="login-btn">
           <button @click="enter">登录</button>
@@ -21,6 +21,7 @@
 
 <script>
 import MyHeader from '@/components/MyHeader'
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -30,8 +31,9 @@ export default {
     MyHeader
   },
   methods: {
+    ...mapActions(['do_login']),
     enter () {
-      this.$router.push('/home/index')
+      this.do_login().then(() => this.$router.push('/home/index'))
     }
   }
 }
@@ -39,22 +41,22 @@ export default {
 
 <style scoped>
 .box {
-  background: url(../../../assets/bgimg/0416.jpg) no-repeat;
+  background: url("../../../assets/bgimg/0416.jpg") no-repeat;
   background-position: 100% 49%;
   background-size: 1400px;
 }
 .login-box {
   width: 320px;
-  height: 155px;
+  height: 150px;
   position: absolute;
   top: 30%;
   right: 25%;
-  padding: 50px 20px;
-  box-shadow: 1px 3px 45px 3px #489;
+  padding: 45px 20px;
+  box-shadow: 1px 3px 45px 3px #479;
   border-radius: 10px;
 }
 .login-box div {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .login-box div span {
   display: inline-block;
@@ -62,8 +64,13 @@ export default {
   padding-right: 8px;
   text-align-last: justify;
 }
-.el-input {
-  width: 250px;
+.login-box input {
+  width: 200px;
+  background: transparent;
+  border: 1px solid #efefef;
+  height: 35px;
+  padding: 0 15px;
+  border-radius: 4px;
 }
 .login-btn {
   text-align: center;
@@ -81,11 +88,6 @@ export default {
 }
 .login-btn button:hover {
   background: #66b1ff;
-}
-</style>
-<style>
-.login-box .el-input__inner {
-  background: transparent;
 }
 </style>
 
