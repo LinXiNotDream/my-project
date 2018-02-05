@@ -1,6 +1,6 @@
-import canvas from '@/pages/canvas/index'
-import elec from '@/pages/checkElec/Electric'
-import login from '@/pages/subhome/login/index'
+import canvas from '@/views/canvas/index'
+import elec from '@/views/checkElec/Electric'
+import login from '@/views/login/index'
 
 import HomePage from './home'
 

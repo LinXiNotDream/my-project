@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import instance from '@/api/index.js'
 import MyHeader from '@/components/MyHeader'
 import { mapActions } from 'vuex'
 export default {
@@ -34,9 +33,7 @@ export default {
   methods: {
     ...mapActions(['do_login']),
     async enter () {
-      let test = await instance
-      console.log(test)
-      // this.do_login().then(() => this.$router.push('/home/index'))
+      this.do_login().then(() => this.$router.push('/home/index'))
     }
   }
 }
@@ -44,7 +41,7 @@ export default {
 
 <style scoped>
 .box {
-  background: url("../../../assets/bgimg/0416.jpg") no-repeat;
+  background: url("../../assets/bgimg/0416.jpg") no-repeat;
   background-position: 100% 22%;
   background-size: 1400px;
 }

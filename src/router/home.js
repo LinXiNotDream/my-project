@@ -1,7 +1,7 @@
-const Home = () => import('@/pages/subhome/home/index.vue')
-const Index = () => import('@/pages/subhome/home/homePage/index.vue')
-const Blog = () => import('@/pages/subhome/home/blog/index.vue')
-const Center = () => import('@/pages/subhome/home/center/index.vue')
+const Home = () => import('@/views/subhome/index.vue')
+const Index = () => import('@/views/subhome/homePage/index.vue')
+const Blog = () => import('@/views/subhome/blog/index.vue')
+const Center = () => import('@/views/subhome/center/index.vue')
 
 var HomePage = [
   {

@@ -30,7 +30,6 @@ export default {
     },
     setTime () {
       this.timer = setInterval(() => this.shufflingImg(), 1000)
-      console.log(this.timer)
     },
     stop () {
       clearInterval(this.timer)
