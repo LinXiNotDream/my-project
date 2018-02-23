@@ -1,6 +1,7 @@
-# testvue
+# my-project
 
 > A Vue.js project
+> 主要是用来练手的，实验各种vue及vue生态的功能用法
 
 ## Build Setup
 
@@ -16,8 +17,6 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
-https://leetcode.com
-http://www.codewars.com
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
@@ -27,4 +26,6 @@ https://juejin.im/entry/59fe9ba5518825603a37fee9
 
 https://zhuanlan.zhihu.com/p/33298555
 
-http://wowubuntu.com/markdown/
+http://www.cnblogs.com/dojo-lzz/p/3999013.html
+
+http://www.codewars.com
