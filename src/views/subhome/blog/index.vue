@@ -1,8 +1,10 @@
 <template>
   <div class="box">
-    <div class="left"></div>
-    <div class="right"></div>
-    <div class="main"></div>
+    <div class="container">
+      <div class="main"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
   </div>
 </template>
 
@@ -18,21 +20,25 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+}
 .left {
-  float: left;
+  order: -1;
+  flex: 0 1 200px;
+  margin-right: 20px;
   height: 200px;
-  width: 100px;
   background-color: red;
 }
 .right {
-  width: 200px;
+  order: 2;
+  flex: 0 1 200px;
   height: 200px;
+  margin-left: 10px;
   background-color: blue;
-  float: right;
 }
 .main {
-  margin-left: 120px;
-  margin-right: 220px;
+  flex-grow: 1;
   height: 200px;
   background-color: green;
 }
