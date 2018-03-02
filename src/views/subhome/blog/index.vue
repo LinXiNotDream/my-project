@@ -32,7 +32,7 @@ export default {
 }
 .right {
   order: 2;
-  flex: 0 1 200px;
+  flex: 0 1 100px;
   height: 200px;
   margin-left: 10px;
   background-color: blue;
