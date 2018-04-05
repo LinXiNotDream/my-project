@@ -26,6 +26,4 @@ https://juejin.im/entry/59fe9ba5518825603a37fee9
 
 https://zhuanlan.zhihu.com/p/33298555
 
-http://www.cnblogs.com/dojo-lzz/p/3999013.html
-
-http://www.codewars.com
+http://www.cnblogs.com/chengzp/p/prototype.html#3852696
