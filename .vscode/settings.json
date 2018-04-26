@@ -2,7 +2,7 @@
 {
   // git
   "git.enableSmartCommit": true,
-  "terminal.integrated.shell.windows": "E:\\git\\Git\\bin\\bash.exe",
+  // "terminal.integrated.shell.windows": "E:\\git\\Git\\bin\\bash.exe",
   // 样式
   "workbench.colorTheme": "One Monokai",
   "editor.tabSize": 2,
