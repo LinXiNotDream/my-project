@@ -29,7 +29,7 @@ export default {
       this.activedImg === this.imgs.length && (this.activedImg = 0)
     },
     setTime () {
-      this.timer = setInterval(() => this.shufflingImg(), 1000)
+      this.timer = setInterval(() => this.shufflingImg(), 3000)
     },
     stop () {
       clearInterval(this.timer)
