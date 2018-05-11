@@ -8,6 +8,9 @@ import store from './store'
 // element-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+// 图片裁剪
+import Croppa from 'vue-croppa'
+import 'vue-croppa/dist/vue-croppa.css'
 
 // iview
 // import iView from 'iview'
@@ -15,7 +18,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './main.css'
 
 Vue.config.productionTip = false
-Vue.use(ElementUI)
+Vue
+  .use(ElementUI)
+  .use(Croppa, { componentName: 'image-croppa' })
+// .component('image-croppa', () => import(Croppa.component))
 
 /* eslint-disable no-new */
 new Vue({
