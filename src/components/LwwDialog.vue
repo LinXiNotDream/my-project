@@ -1,10 +1,10 @@
 <template>
   <transition name="dialog-fade">
     <div v-show="visible" class="lww-dialog">
-      <div class="dialog">
+      <div class="dialog" :style="`width: ${width}px;`">
         <header>
-          <span v-if="showTitle" class="title">{{title}}</span>
-          <div class="close" @click="closeDialog">x</div>
+          <span v-if="showTitle" class="title">{{ title }}</span>
+          <div class="close" @click="handleClose">x</div>
         </header>
         <div class="content"></div>
       </div>
@@ -19,8 +19,10 @@ export default {
   },
   props: {
     visible: { type: Boolean, default: false },
-    title: { type: String, default: 'aa' },
-    showTitle: { type: Boolean, default: true }
+    title: { type: String, default: '' },
+    showTitle: { type: Boolean, default: false },
+    beforeClose: Function,
+    width: { type: Number, default: 592 }
   },
   data () {
     return {
@@ -33,6 +35,20 @@ export default {
   methods: {
     closeDialog () {
       this.$emit('update:visible', false)
+    },
+    handleClose () {
+      if (typeof this.beforeClose === 'function') {
+        this.beforeClose(this.hide)
+      } else {
+        this.hide()
+      }
+    },
+    hide (cancel) {
+      console.log(cancel, 'cancel')
+      if (cancel !== false) {
+        this.$emit('update:visible', false)
+        this.$emit('visible-change', false)
+      }
     }
   }
 }
@@ -56,8 +72,6 @@ export default {
   z-index: 100;
 }
 .lww-dialog .dialog {
-  width: 400px;
-  height: 400px;
   background: #fff;
   position: fixed;
   top: 50%;
@@ -72,11 +86,22 @@ export default {
   opacity: 0.5;
 }
 .lww-dialog .close {
-  float: right;
-  height: 20px;
-  width: 20px;
-  margin-top: 10px;
-  margin-right: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 42px;
+  width: 42px;
   cursor: pointer;
+  background: #555;
+}
+.lww-dialog .close:hover {
+  background: orange;
+}
+.lww-dialog .dialog header .title {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+  height: 40px;
 }
 </style>
