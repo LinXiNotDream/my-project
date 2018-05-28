@@ -12,6 +12,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Croppa from 'vue-croppa'
 import 'vue-croppa/dist/vue-croppa.css'
 
+import LwwDialog from 'components/LwwDialog'
+
 // iview
 // import iView from 'iview'
 // import 'iview/dist/styles/iview.css'
@@ -21,6 +23,7 @@ Vue.config.productionTip = false
 Vue
   .use(ElementUI)
   .use(Croppa, { componentName: 'image-croppa' })
+  .component('LwwDialog', LwwDialog)
 // .component('image-croppa', () => import(Croppa.component))
 
 /* eslint-disable no-new */
