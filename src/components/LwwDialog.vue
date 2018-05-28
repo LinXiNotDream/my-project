@@ -1,7 +1,14 @@
 <template>
   <transition name="dialog-fade">
-    <div v-if="visible" class="lww-dialog" @click="closeDialog">
-      <div class="dialog"></div>
+    <div v-show="visible" class="lww-dialog">
+      <div class="dialog">
+        <header>
+          <span v-if="showTitle" class="title">{{title}}</span>
+          <div class="close" @click="closeDialog">x</div>
+        </header>
+        <div class="content"></div>
+      </div>
+      <div class="lww-mask-layer"></div>
     </div>
   </transition>
 </template>
@@ -11,7 +18,9 @@ export default {
   components: {
   },
   props: {
-    visible: { type: Boolean, default: false }
+    visible: { type: Boolean, default: false },
+    title: { type: String, default: 'aa' },
+    showTitle: { type: Boolean, default: true }
   },
   data () {
     return {
@@ -19,15 +28,9 @@ export default {
   },
   watch: {
     'visible' (val) {
-      if (val) this.creatMaskLayer()
     }
   },
   methods: {
-    creatMaskLayer () {
-      const div = document.createElement('div')
-      div.className = 'lww-mask-layer'
-      document.body.appendChild(div)
-    },
     closeDialog () {
       this.$emit('update:visible', false)
     }
@@ -36,10 +39,13 @@ export default {
 </script>
 
 <style scoped>
-.dialog-fade-enter {
+.dialog-fade-enter-active,
+.dialog-fade-leave-active {
+  transition: opacity 0.5s;
 }
-.dialog-fade-enter-active {
-  transition: all 2s ease-out;
+.dialog-fade-enter,
+.dialog-fade-leave-to {
+  opacity: 0;
 }
 .lww-dialog {
   position: fixed;
@@ -57,19 +63,20 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
-</style>
-
-<style>
-.lww-mask-layer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+.lww-dialog .lww-mask-layer {
+  width: 100%;
+  height: 100%;
   background: #000;
   opacity: 0.5;
-  z-index: 99;
+}
+.lww-dialog .close {
+  float: right;
+  height: 20px;
+  width: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 </style>
-
