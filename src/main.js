@@ -13,6 +13,7 @@ import Croppa from 'vue-croppa'
 import 'vue-croppa/dist/vue-croppa.css'
 
 import LwwDialog from '@/components/LwwDialog'
+import LwwInput from '@/components/LwwInput'
 
 // iview
 // import iView from 'iview'
@@ -20,10 +21,10 @@ import LwwDialog from '@/components/LwwDialog'
 import './main.css'
 
 Vue.config.productionTip = false
-Vue
-  .use(ElementUI)
-  .use(Croppa, { componentName: 'image-croppa' })
-  .component('LwwDialog', LwwDialog)
+Vue.use(ElementUI)
+Vue.use(Croppa, { componentName: 'image-croppa' })
+Vue.component('LwwInput', LwwInput)
+Vue.component('LwwDialog', LwwDialog)
 // .component('image-croppa', () => import(Croppa.component))
 
 /* eslint-disable no-new */

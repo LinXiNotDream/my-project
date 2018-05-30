@@ -2,6 +2,7 @@
   <div>
     <span @click="open">开启</span>
     <lww-dialog :visible.sync="showDialog" :width="300" :showTitle="true" :title="'Test'"></lww-dialog>
+    <lww-input></lww-input>
   </div>
 </template>
 
