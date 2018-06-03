@@ -4,7 +4,7 @@
       <div class="dialog" :style="`width: ${width}px;`">
         <header>
           <span v-if="showTitle" class="title">{{ title }}</span>
-          <div class="close" @click="handleClose">x</div>
+          <div class="iconfont icon-jiantou close" @click="handleClose"></div>
         </header>
         <div class="content"></div>
       </div>
@@ -92,10 +92,10 @@ export default {
   height: 42px;
   width: 42px;
   cursor: pointer;
-  background: #555;
+  color: gray;
 }
 .lww-dialog .close:hover {
-  background: orange;
+  color: orange;
 }
 .lww-dialog .dialog header .title {
   display: block;

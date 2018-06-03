@@ -18,6 +18,8 @@ import LwwInput from '@/components/LwwInput'
 // iview
 // import iView from 'iview'
 // import 'iview/dist/styles/iview.css'
+import './assets/iconfont/iconfont.css'
+
 import './main.css'
 
 Vue.config.productionTip = false
