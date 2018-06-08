@@ -39,3 +39,15 @@ body {
   border: 1px solid #e6a23c;
   color: #fdf6ec;
 }
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+.self-scroll::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+}
+/*定义滑块 内阴影+圆角*/
+.self-scroll::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  margin: 2px;
+  background-color: rgba(33, 33, 33, 0.6);
+}

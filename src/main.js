@@ -14,6 +14,7 @@ import 'vue-croppa/dist/vue-croppa.css'
 
 import LwwDialog from '@/components/LwwDialog'
 import LwwInput from '@/components/LwwInput'
+import LwwButton from '@/components/LwwButton'
 
 // iview
 // import iView from 'iview'
@@ -27,6 +28,7 @@ Vue.use(ElementUI)
 Vue.use(Croppa, { componentName: 'image-croppa' })
 Vue.component('LwwInput', LwwInput)
 Vue.component('LwwDialog', LwwDialog)
+Vue.component('LwwButton', LwwButton)
 // .component('image-croppa', () => import(Croppa.component))
 
 /* eslint-disable no-new */

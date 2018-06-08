@@ -34,14 +34,4 @@ input.lww-input:hover,
 input.lww-input:focus {
   border-color: #ff822e;
 }
-input::-moz-placeholder {
-  font-family: PingFangSC-Regular;
-  font-size: 14px;
-  color: red;
-}
-input::-webkit-input-placeholder {
-  font-family: PingFangSC-Regular;
-  font-size: 14px;
-  color: red;
-}
 </style>
