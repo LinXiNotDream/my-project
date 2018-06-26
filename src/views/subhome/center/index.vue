@@ -62,4 +62,14 @@ export default {
 </script>
 
 <style scoped>
+.test {
+  width: 400px;
+  height: 400px;
+  overflow: auto;
+}
+.content {
+  width: 80%;
+  height: 800px;
+  background: gray;
+}
 </style>
