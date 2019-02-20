@@ -10,26 +10,28 @@ var w = document.body.offsetWidth
 var h = document.body.offsetHeight
 c.width = w
 c.height = h
+// 粒子
 var particles = []
 var particleCount = 1000
 var particlePath = 4
+// 柱子
 var pillars = []
 var pillarCount = 110
+// 色调
 var hue = 0
 var hueRange = 60
 var hueChange = 1
+// 重力
 var gravity = 0.1
+
 var lineWidth = 1
+// 线帽
 var lineCap = 'round'
+
 var PI = Math.PI
 var TWO_PI = PI * 2
 
-/* /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
-
-Utility
-
-=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= */
-
+// Utility
 function rand (min, max) {
   return Math.random() * (max - min) + min
 }
@@ -40,12 +42,7 @@ function distance (a, b) {
   return Math.sqrt(dx * dx + dy * dy)
 }
 
-/* /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
-
-Particle
-
-=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= */
-
+// Particle
 function Particle (opt) {
   this.path = []
   this.reset()
@@ -99,23 +96,18 @@ Particle.prototype.draw = function () {
     var point = this.path[i]
     ctx.lineTo(point[0], ~~point[1])
   }
-  ctx.strokeStyle = 'hsla(' + rand(hue + (this.x / 3), hue + (this.x / 3) + hueRange) + ', 50%, 30%, 0.3)'
+  ctx.strokeStyle = 'hsla(' + rand(hue + this.x / 3, hue + this.x / 3 + hueRange) + ', 50%, 30%, 0.3)'
   ctx.stroke()
 
   if (this.hit) {
     ctx.beginPath()
     ctx.arc(this.x, this.y, rand(1, 25), 0, TWO_PI)
-    ctx.fillStyle = 'hsla(' + rand(hue + (this.x / 3), hue + (this.x / 3) + hueRange) + ', 80%, 15%, 0.1)'
+    ctx.fillStyle = 'hsla(' + rand(hue + this.x / 3, hue + this.x / 3 + hueRange) + ', 80%, 15%, 0.1)'
     ctx.fill()
   }
 }
 
-/* /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
-
-Pillar
-
-=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= */
-
+// Pillar
 function Pillar () {
   this.reset()
 }
@@ -150,12 +142,7 @@ Pillar.prototype.draw = function () {
   ctx.fill()
 }
 
-/* /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
-
-Init
-
-=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= */
-
+// Init
 function init () {
   ctx.lineWidth = lineWidth
   ctx.lineCap = lineCap
@@ -169,12 +156,7 @@ function init () {
   loop()
 }
 
-/* /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
-
-Step
-
-=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= */
-
+// Step
 function step () {
   hue += hueChange
 
@@ -193,12 +175,7 @@ function step () {
   }
 }
 
-/* /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
-
-Draw
-
-=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= */
-
+// Draw
 function draw () {
   ctx.fillStyle = 'hsla(0, 0%, 0%, 0.1)'
   ctx.fillRect(0, 0, w, h)
@@ -217,22 +194,12 @@ function draw () {
   }
 }
 
-/* /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
-
-Loop
-
-=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= */
-
+// Loop
 function loop () {
   requestAnimationFrame(loop)
   step()
   draw()
 }
 
-/* /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
-
-Blast Off
-
-=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= */
-
+// Blast Off
 init()
