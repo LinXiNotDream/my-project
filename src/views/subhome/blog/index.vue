@@ -1,7 +1,12 @@
 <template>
   <div class="box">
-    <image-croppa v-model="myCroppa" :prevent-white-space="true" :width="croppaWidth" :height="croppaHeight" @init="onInit">
-    </image-croppa>
+    <image-croppa
+      v-model="myCroppa"
+      :prevent-white-space="true"
+      :width="croppaWidth"
+      :height="croppaHeight"
+      @init="onInit"
+    ></image-croppa>
     <button @click="upload">上传</button>
   </div>
 </template>
@@ -45,5 +50,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
